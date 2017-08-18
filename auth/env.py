@@ -28,6 +28,16 @@ class Env:
                                                         unique=True,
                                                         index=True),
                                       sqlalchemy.Column('password', sqlalchemy.Text))
+        self.tokens = sqlalchemy.Table('tokens', self.metadata,
+                                      sqlalchemy.Column('id', sqlalchemy.Integer,
+                                                        sqlalchemy.Sequence('id_seq'),
+                                                        primary_key=True),
+                                      sqlalchemy.Column('token', sqlalchemy.Text,
+                                                        unique=True,
+                                                        index=True),
+                                      sqlalchemy.Column('userid', sqlalchemy.Integer, sqlalchemy.ForeignKey('users.id'),
+                                                        index=True),
+                                      sqlalchemy.Column('expires', sqlalchemy.DateTime))
         self.metadata.bind = self.engine
         self.metadata.create_all(checkfirst=True)
 

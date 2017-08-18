@@ -1,13 +1,15 @@
 import cherrypy
 from authprovider import AuthProvider
+from userprovider import UserProvider
 
 def serve(env):
     class Root:
         pass
     
     root = Root()
+    root.user = UserProvider(env)
     root.auth = AuthProvider(env)
-    
+
     def show_blank_page_on_error():
         cherrypy.response.status = 500
         return ''
