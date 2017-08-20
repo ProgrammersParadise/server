@@ -12,9 +12,9 @@ class AuthProvider():
         self.max_sessions_per_user = 5
         self.env = env
 
-    def POST(self, name, password):
+    def POST(self, username, password):
         session = self.env.Session()
-        res = session.query(self.env.users.c.id, self.env.users.c.password).filter(self.env.users.c.name==name).one_or_none()
+        res = session.query(self.env.users.c.id, self.env.users.c.password).filter(self.env.users.c.username==username).one_or_none()
         if res is None:
             # user not found
             cherrypy.response.status = 401

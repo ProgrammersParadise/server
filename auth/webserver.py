@@ -1,6 +1,7 @@
 import cherrypy
 from authprovider import AuthProvider
 from userprovider import UserProvider
+from loginprovider import LoginProvider
 
 def serve(env):
     class Root:
@@ -9,6 +10,7 @@ def serve(env):
     root = Root()
     root.user = UserProvider(env)
     root.auth = AuthProvider(env)
+    root.login = LoginProvider(env)
 
     def show_blank_page_on_error():
         cherrypy.response.status = 500

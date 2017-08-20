@@ -24,7 +24,7 @@ class Env:
                                       sqlalchemy.Column('id', sqlalchemy.Integer,
                                                         sqlalchemy.Sequence('id_seq'),
                                                         primary_key=True),
-                                      sqlalchemy.Column('name', sqlalchemy.Text,
+                                      sqlalchemy.Column('username', sqlalchemy.Text,
                                                         unique=True,
                                                         index=True),
                                       sqlalchemy.Column('password', sqlalchemy.Text))
